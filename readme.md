@@ -1,13 +1,13 @@
-![Version](https://img.shields.io/npm/v/nwjs-macappstore-builder.svg)
-![Downloads](https://img.shields.io/npm/dm/nwjs-macappstore-builder.svg)
-![Dependencies](https://img.shields.io/david/johansatge/nwjs-macappstore-builder.svg)
-![devDependencies](https://img.shields.io/david/dev/johansatge/nwjs-macappstore-builder.svg)
+![Version](https://img.shields.io/npm/v/nwjs-osx-on-linux-builder.svg)
+![Downloads](https://img.shields.io/npm/dm/nwjs-osx-on-linux-builder.svg)
+![Dependencies](https://img.shields.io/david/johansatge/nwjs-osx-on-linux-builder.svg)
+![devDependencies](https://img.shields.io/david/dev/johansatge/nwjs-osx-on-linux-builder.svg)
 
-# NW.js Mac App Store Builder
+# NW.js Linux Builder
 
 ![Icon](icon.jpg)
 
-This node module has been made to easily build and publish [NW.js](http://nwjs.io) apps on the Mac App Store.
+This node module is a slightly modified version of Johan Satgé nwjs-osx-on-linux-builder that has been modified to build and package [NW.js](http://nwjs.io) apps on (ubuntu) linux
 
 It automates all the steps described in [Publishing NW.js apps on the Mac App Store: a detailed guide](https://github.com/johansatge/nwjs-macappstore).
 
@@ -26,7 +26,7 @@ It automates all the steps described in [Publishing NW.js apps on the Mac App St
 Install with [npm](https://www.npmjs.com/):
 
 ```bash
-npm install -g nwjs-macappstore-builder
+npm install -g nwjs-osx-on-linux-builder
 ```
 
 ## Configuration
@@ -48,30 +48,6 @@ var config = {
     bundle_version: '148',
     copyright: '© Sample copyright',
     icon_path: '/Users/johan/Github/my-nwjs-project/icon.icns',
-    
-    // Signing configuration
-    identity: 'LK12345678', // Application signing
-    identity_installer: 'LK12345679', // Application installer signing (may be the same as identity)
-    entitlements: [
-      'com.apple.security.network.client',
-      'com.apple.security.assets.movies.read-only'
-    ],
-       
-    // App categories
-    app_category: 'public.app-category.utilities',
-    app_sec_category: 'public.app-category.productivity',
- 
-    // Additional keys to add in the Info.plist file (optional, remove if not needed)
-    plist: {
-        NSSampleProperty1: 'Property value 1',
-        NSSampleProperty2: {
-            NSSub1: 'Sub-property value 1',
-            NSSub2: 'Sub-property value 1'
-        }
-    }
-    
-    // Optimization
-    uglify_js: true // Uglifies all JS files found in the app (default is FALSE)
 }
 ```
 
@@ -80,7 +56,7 @@ var config = {
 Just require the module and fire the `build` function.
 
 ```javascript
-var Builder = require('nwjs-macappstore-builder');
+var Builder = require('nwjs-osx-on-linux-builder');
 var show_output = true;
 
 var builder = new Builder();
@@ -95,13 +71,13 @@ builder.build(config, function(error, app_path)
 Each parameter of the config can be passed as a parameter:
 
 ```bash
-nwjs-macappstore-builder --name=YourApp --bundle_id=com.yourcompanyname.yourapp [...]
+nwjs-osx-on-linux-builder --name=YourApp --bundle_id=com.yourcompanyname.yourapp [...]
 ```
 
 As there are a lot of parameters, you may prefer this more readable alternative:
 
 ```bash
-nwjs-macappstore-builder --config=/Users/johan/Desktop/build-config.json
+nwjs-osx-on-linux-builder --config=/Users/johan/Desktop/build-config.json
 ```
 
 The `build-config.json` file being a JSON object containing all the parameters described above.
@@ -110,6 +86,7 @@ The `build-config.json` file being a JSON object containing all the parameters d
 
 | Version | Date | Notes |
 | --- | --- | --- |
+| `1.0.0` | 2017-01-20 | Forked by SchizoDuckie, modified to work on linux. (removed signing and uglifyjs)
 | `3.1.6` | 2016-05-09 | Displays a warning on minification error & updates dependencies |
 | `3.1.5` | 2016-02-10 | Fixes validation issue when using uppercase letters in `bundle_id` |
 | `3.1.4` | 2015-09-12 | Updates dependencies |
@@ -131,10 +108,10 @@ This project is released under the [MIT License](LICENSE).
 
 ## Credits
 
+* [johansatge's nwjs-macappstore-builder](johansatge/nwjs-macappstore-builder)
 * [async](https://github.com/caolan/async)
 * [colors](https://github.com/Marak/colors.js)
 * [plist](https://github.com/TooTallNate/plist.js)
 * [validator.js](validatorjs.org)
 * [yargs](https://github.com/bcoe/yargs)
 * [glob](https://github.com/isaacs/node-glob)
-* [uglify-js](https://github.com/mishoo/UglifyJS2)

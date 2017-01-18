@@ -1,7 +1,7 @@
 {
-  "name": "nwjs-macappstore-builder",
-  "version": "3.1.6",
-  "description": "Easily build and publish NW.js apps on the Mac App Store.",
+  "name": "nwjs-osx-on-linux-builder",
+  "version": "1.0.0",
+  "description": "Easily build and package OSX NW.js apps on (ubuntu) Linux.",
   "keywords": [
     "cli-app",
     "cli",
@@ -11,20 +11,19 @@
     "nw",
     "nwjs",
     "node-webkit",
-    "mas",
-    "appstore",
-    "macappstore",
+    "linux",
+    "ubuntu",
     "osx",
     "mac"
   ],
-  "homepage": "https://github.com/johansatge/nwjs-macappstore-builder",
+  "homepage": "https://github.com/schizoduckie/nwjs-osx-on-linux-builder",
   "bugs": {
-    "url": "https://github.com/johansatge/nwjs-macappstore-builder/issues"
+    "url": "https://github.com/schizoduckie/nwjs-osx-on-linux-builder/issues"
   },
   "license": "MIT",
   "author": {
-    "name": "Johan Satgé",
-    "url": "http://johansatge.com"
+    "name": "SchizoDuckie",
+    "url": "https://github.com/SchizoDuckie"
   },
   "files": [
     "src/builder.js",
@@ -35,13 +34,15 @@
   "bin": {
     "nwjs-macappstore-builder": "src/cli.js"
   },
-  "repository": "johansatge/nwjs-macappstore-builder",
+  "repository": "SchizoDuckie/nwjs-osx-on-linux-builder",
   "dependencies": {
     "async": "^1.5.2",
     "colors": "^1.1.2",
     "glob": "^7.0.3",
+    "handlebars": "^4.0.6",
     "plist": "^1.2.0",
     "replace": "^0.3.0",
+    "shelljs": "^0.7.6",
     "uglify-js": "^2.6.2",
     "validator.js": "^1.2.3",
     "yargs": "^4.7.0"
@@ -53,7 +54,7 @@
     "node": ">=0.12.0"
   },
   "os": [
-    "darwin"
+    "linux"
   ],
   "scripts": {
     "test": "./node_modules/.bin/mocha -u tdd --reporter spec --timeout 20000"
